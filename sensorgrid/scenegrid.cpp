@@ -4,9 +4,10 @@
 #include <iostream>
 
 
-SceneGrid::SceneGrid(qreal x, qreal y, qreal width, qreal height, double cellSize, double cellScale) :
+SceneGrid::SceneGrid(qreal x, qreal y, qreal width, qreal height, OccupancyGrid *grid, double cellSize, double cellScale) :
     QGraphicsScene(x, y, width, height)
 {
+    this->grid = grid;
     this->cellSize = cellSize;
     this->cellScale = cellScale;
     rectBot = NULL;
@@ -28,6 +29,20 @@ double SceneGrid::getCellScale()
 
 void SceneGrid::drawForeground(QPainter *painter, const QRectF &rect)
 {
+    for (int i = 0; i < grid->getWidth(); i++) {
+        for (int j = 0; j < grid->getHeight(); j++) {
+            std::cout << "antes i" << i << " j" << j << std::endl;
+            if (grid->at(i,j)) {
+                std::cout << "meio i" << i << " j" << j << std::endl;
+                if (grid->at(i,j)->getValue() == 2) {
+                    std::cout << "osososososo i" << i << " j" << j << std::endl;
+                } else {
+                    std::cout << "wwwwwww i" << i << " j" << j << std::endl;
+                }
+            }
+        }
+    }
+    std::cout << "teste" << std::endl;
     qreal x, y;
     qreal left = int(rect.left()) - (int(rect.left()) % (int(cellSize)));
     qreal top = int(rect.top()) - (int(rect.top()) % (int(cellSize)));
@@ -86,7 +101,7 @@ void SceneGrid::drawBotRect(qreal x, qreal y)
 
 void SceneGrid::drawTrailRect(qreal x, qreal y)
 {
-    QGraphicsRectItem *rect = new QGraphicsRectItem(x, y, cellSize*2, cellSize*2);
+    QGraphicsRectItem *rect = new QGraphicsRectItem(x, y, cellSize, cellSize);
     rectBot->setParentItem(rect);
     rect->setBrush(QBrush(Qt::darkGray));
     this->addItem(rect);

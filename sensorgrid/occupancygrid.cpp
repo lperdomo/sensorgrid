@@ -15,15 +15,12 @@ OccupancyGrid::~OccupancyGrid()
 
 OccupancyGridCell *OccupancyGrid::at(double x, double y)
 {
-    x = x + (width/2);
-    y = (height/2) - y;
     return matrix[x][y];
 }
 
 void OccupancyGrid::assign(double x, double y, double value)
 {
-    x = x + (width/2);
-    y = (height/2) - y;
+    std::cout << " assign x" << x << " y" << y << std::endl;
     if (!matrix[x][y]) {
         matrix[x][y] = new OccupancyGridCell(value);
     } else {

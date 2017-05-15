@@ -18,10 +18,12 @@ public:
     void runBot();
 private:
     Bot *bot;
-    SceneGrid scene;
-    QGraphicsView view;
-    OccupancyGrid grid;
+    SceneGrid *scene;
+    QGraphicsView *view;
+    OccupancyGrid *grid;
     QThread *thread;
+    double getBotMapX();
+    double getBotMapY();
     void updateBotCell(double x, double y);
     void updateTrailCell(double x, double y);
     void drawBotView();

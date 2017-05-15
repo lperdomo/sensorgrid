@@ -6,10 +6,12 @@
 #include <QPainter>
 #include <QKeyEvent>
 
+#include "occupancygrid.h"
+
 class SceneGrid : public QGraphicsScene
 {
 public:
-    SceneGrid(qreal x, qreal y, qreal width, qreal height, double cellSize, double cellScale);
+    SceneGrid(qreal x, qreal y, qreal width, qreal height, OccupancyGrid *grid, double cellSize, double cellScale);
     ~SceneGrid();
     void drawBotRect(qreal x, qreal y);
     void drawTrailRect(qreal x, qreal y);
@@ -18,6 +20,7 @@ public:
 private:
     double cellSize;
     double cellScale;
+    OccupancyGrid *grid;
     QGraphicsRectItem *rectBot;
 protected:
     void drawForeground(QPainter *painter, const QRectF &rect);
