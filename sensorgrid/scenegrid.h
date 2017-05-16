@@ -21,6 +21,7 @@ public:
 private:
     double cellSize;
     double cellScale;
+    std::vector<std::vector<QGraphicsRectItem*> > squares;
     OccupancyGrid *grid;
     QGraphicsRectItem *rectBot;
 protected:

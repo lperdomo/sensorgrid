@@ -7,8 +7,8 @@ Controller::Controller(double width, double height, double cellSize, double cell
     QObject()
 {
     grid = new OccupancyGrid(width, height);
-    scene = new SceneGrid((width/2)*-1, (height/2)*-1, width, height, cellSize, cellScale, grid),
-    view = new QGraphicsView(scene),
+    scene = new SceneGrid((width/2)*-1, (height/2)*-1, width, height, cellSize, cellScale, grid);
+    view = new QGraphicsView(scene);
     thread = new QThread();
 }
 

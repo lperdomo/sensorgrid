@@ -66,6 +66,7 @@ void SceneGrid::drawGrid()
                     squares[250+i][250+j]->setBrush(QBrush(Qt::white));
                 }
                 //this->removeItem(squares[i][j]);
+                //this->i
                 this->addItem(squares[250+i][250+j]);
                     //QRect tmp(i, j, cellSize, cellSize);
                     //painter->fillRect(tmp, QBrush(QColor(255, 0, 0, 255)));
