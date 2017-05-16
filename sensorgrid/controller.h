@@ -22,10 +22,7 @@ private:
     QGraphicsView *view;
     OccupancyGrid *grid;
     QThread *thread;
-    double getBotMapX();
-    double getBotMapY();
-    void updateBotCell(double x, double y);
-    void updateTrailCell(double x, double y);
+    void updateBotCell();
     void drawBotView();
     void mappingDeadReck();
 signals:

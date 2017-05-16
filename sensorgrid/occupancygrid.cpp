@@ -2,7 +2,7 @@
 #include <iostream>
 
 OccupancyGrid::OccupancyGrid(double width, double height) :
-    matrix(width, std::vector<OccupancyGridCell*>(height, NULL)),
+    matrix(width+1, std::vector<OccupancyGridCell*>(height+1, NULL)),
     QObject()
 {
     this->width = width;
@@ -15,12 +15,16 @@ OccupancyGrid::~OccupancyGrid()
 
 OccupancyGridCell *OccupancyGrid::at(double x, double y)
 {
+
+    x = x + (width/2);
+    y = (height/2) - y;
     return matrix[x][y];
 }
 
 void OccupancyGrid::assign(double x, double y, double value)
 {
-    std::cout << " assign x" << x << " y" << y << std::endl;
+    x = x + (width/2);
+    y = (height/2) - y;
     if (!matrix[x][y]) {
         matrix[x][y] = new OccupancyGridCell(value);
     } else {
