@@ -31,6 +31,18 @@ void OccupancyGrid::assign(double x, double y, double value)
     }
 }
 
+void OccupancyGrid::assignRotate(double x, double y, double angle, double pivotx, double pivoty, double value)
+{
+    std::cout << "eeeeeeeeeeeeeeee x" << x << " y" << y << " angle" << angle << std::endl;
+    int tx = cos(angle) * (x-pivotx) - sin(angle) * (y-pivoty) + pivotx;
+    int ty = sin(angle) * (x-pivotx) + cos(angle) * (y-pivoty) + pivoty;
+    std::cout << "tx" << tx << " ty" << ty << std::endl;
+    assign(tx
+           , ty, value);
+    std::cout << "dddddddddddddddd" << std::endl;
+}
+
+
 double OccupancyGrid::getWidth()
 {
     return width;

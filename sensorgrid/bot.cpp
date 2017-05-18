@@ -98,10 +98,18 @@ void Bot::doTeleOp()
             rightW = 0;
         }
         if (Keyboard::getInstance()->isArrowLeft()) {
-            leftW = velForward*0.1;
+            if (Keyboard::getInstance()->isArrowUp()) {
+                leftW = velForward*0.1;
+            } else {
+                rightW = velForward*0.1;
+            }
         }
         if (Keyboard::getInstance()->isArrowRight()) {
-            rightW = velForward*0.1;
+            if (Keyboard::getInstance()->isArrowUp()) {
+                rightW = velForward*0.1;
+            } else {
+                leftW = velForward*0.1;
+            }
         }
         this->move(leftW, rightW);
         ArUtil::sleep(500);

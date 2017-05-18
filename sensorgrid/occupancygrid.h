@@ -2,6 +2,7 @@
 #define OCCUPANCYGRID_H
 
 #include <QObject>
+#include <math.h>
 
 class OccupancyGridCell : public QObject
 {
@@ -26,6 +27,7 @@ public:
     ~OccupancyGrid();
     OccupancyGridCell *at(double x, double y);
     void assign(double x, double y, double value);
+    void assignRotate(double x, double y, double angle, double pivotx, double pivoty, double value);
     double getWidth();
     double getHeight();
 private:
