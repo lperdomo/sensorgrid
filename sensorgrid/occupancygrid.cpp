@@ -15,7 +15,6 @@ OccupancyGrid::~OccupancyGrid()
 
 OccupancyGridCell *OccupancyGrid::at(double x, double y)
 {
-
     x = x + (width/2);
     y = (height/2) - y;
     return matrix[x][y];

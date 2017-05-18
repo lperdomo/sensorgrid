@@ -7,6 +7,7 @@
 #include <QKeyEvent>
 
 #include "occupancygrid.h"
+#include "graphicgrid.h"
 
 class SceneGrid : public QGraphicsScene
 {
@@ -21,6 +22,7 @@ public:
 private:
     double cellSize;
     double cellScale;
+    GraphicGrid *graphicgrid;
     std::vector<std::vector<QGraphicsRectItem*> > squares;
     OccupancyGrid *grid;
     QGraphicsRectItem *rectBot;

@@ -28,6 +28,7 @@ void Controller::setBot(Bot *bot)
 
 void Controller::runBot()
 {
+    //scene->drawGrid();
     thread->start();
 }
 
@@ -58,14 +59,18 @@ void Controller::mappingDeadReck()
     double limity = (grid->getHeight()/2);
     double beginx = limitx*-1;
     double beginy = limity*-1;
+    double botx = round(bot->getX()/scene->getCellScale());
+    double boty = round(bot->getY()/scene->getCellScale());
     for (double x = beginx; x < limitx; x++) {
         for (double y = beginy; y < limity; y++) {
-            double angle = round(atan2((limity - y) - (limity - bot->getY()), (x - limitx) - (bot->getX() - limitx))*180/M_PI);
-            double distance = sqrt(pow((x - limitx) - (bot->getX() - limitx), 2) + pow((limity - y) - (limity - bot->getY()), 2));
-
-            if (x == bot->getX() && y == bot->getY()) {
+            double angle = bot->getTh()+round(atan2((limity - y) - (limity - boty), (x - limitx) - (botx - limitx))*180/M_PI);
+            double distance = sqrt(pow((x - limitx) - (botx - limitx), 2) + pow((limity - y) - (limity - boty), 2));
+            //int angle = bot->getTh()+round(atan2((limity - y)*5 - boty, (x - limitx)*5 - botx)*180/M_PI);
+            //double distance = sqrt(pow((x - limitx)*5 - botx, 2) + pow((limity - y)*5 - boty, 2));
+            if (angle < -255) angle += 255;
+            if (x == botx && y == boty) {
                 grid->assign(x, y, 1);
-            } else if (distance <= 100 && angle <= 105 && angle >= -105) {
+            } else if (distance <= 10 && angle <= 105 && angle >= -105) {
                 if (angle <= 105 && angle >= 75) {
                     grid->assign(x, y , 2);//90
                 } else if (angle <= 65 && angle >= 35) {
@@ -120,5 +125,5 @@ void Controller::drawBotView()
     if (!view->isVisible()) {
         view->show();
     }
-    view->update();
+    view->viewport()->update();
 }

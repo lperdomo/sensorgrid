@@ -13,16 +13,8 @@ SceneGrid::SceneGrid(qreal x, qreal y, qreal width, qreal height, double cellSiz
     this->cellSize = cellSize;
     this->cellScale = cellScale;
     this->grid = grid;
-    for (int x = -250; x < 250; x++) {
-        std::vector<QGraphicsRectItem*> line;
-        for (int y = -250; y < 250; y++) {
-            QGraphicsRectItem *item = new QGraphicsRectItem(round(x/cellScale), round(y/cellScale), cellSize, cellSize);
-            //this->addItem(item);
-            line.push_back(item);
-        }
-        squares.push_back(line);
-    }
-
+    graphicgrid = new GraphicGrid(grid);
+    this->addItem(graphicgrid);
     rectBot = NULL;
 }
 
@@ -42,11 +34,32 @@ double SceneGrid::getCellScale()
 
 void SceneGrid::drawGrid()
 {
-    for (double i = -250; i < 250; i++) {
-        for (double j = -250; j < 250; j++) {
+
+    /*for (int x = -250; x < 250; x++) {
+        std::vector<QGraphicsRectItem*> line;
+        for (int y = -250; y < 250; y++) {
+            line.push_back(this->addRect(x*cellSize, y*cellSize, cellSize, cellSize, QPen(Qt::darkGray)));
+        }
+        squares.push_back(line);
+    }*/
+    /*QPainterPath myPath;
+    myPath.moveTo(QPointF(0,0));
+    myPath.arcTo(100, 100, 100, 100, 90, 30);
+    this->addPath(myPath);*/
+    /*for (double i = 0; i < 500; i++) {
+        for (double j = 0; j < 500; j++) {
             if (grid->at(i, j)) {
                 double value = grid->at(i, j)->getValue();
-                if (value >= 2 && value <= 9) {
+                if (value == 1) {
+                    //squares[i][j]->setBrush(QBrush(Qt::red));
+                    //this->removeItem(squares[i][j]);
+                    //this->addItem(squares[i][j]);
+                //} else if (value == 0) {
+                //    squares[i][j]->setBrush(QBrush(Qt::white));
+                //    this->removeItem(squares[i][j]);
+                //    this->addItem(squares[i][j]);
+                }
+                /*if (value >= 2 && value <= 9) {
                     if (value == 2) squares[250+i][250+j]->setBrush(QBrush(QColor(0, 255, 255, 127)));
                     else if (value == 3) squares[250+i][250+j]->setBrush(QBrush(QColor(255, 0, 255, 127)));
                     else if (value == 4) squares[250+i][250+j]->setBrush(QBrush(QColor(255, 255, 0, 127)));
@@ -66,6 +79,7 @@ void SceneGrid::drawGrid()
                     squares[250+i][250+j]->setBrush(QBrush(Qt::white));
                 }
                 //this->removeItem(squares[i][j]);
+                //this->i
                 this->addItem(squares[250+i][250+j]);
                     //QRect tmp(i, j, cellSize, cellSize);
                     //painter->fillRect(tmp, QBrush(QColor(255, 0, 0, 255)));
@@ -75,7 +89,7 @@ void SceneGrid::drawGrid()
                 //}
             }
         }
-    }
+    }*/
 }
 
 void SceneGrid::drawForeground(QPainter *painter, const QRectF &rect)
