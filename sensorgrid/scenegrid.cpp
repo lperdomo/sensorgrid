@@ -29,14 +29,19 @@ void SceneGridItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* opt
             if (grid->at(x, y)) {
                 double value = grid->at(x, y)->getValue();
                 if (value == 1) painter->setBrush(QBrush(Qt::red));
-                else if (value == 2) painter->setBrush(QBrush(QColor(0, 255, 255, 127)));
-                else if (value == 3) painter->setBrush(QBrush(QColor(255, 0, 255, 127)));
-                else if (value == 4) painter->setBrush(QBrush(QColor(255, 255, 0, 127)));
-                else if (value == 5) painter->setBrush(QBrush(QColor(255, 0, 0, 127)));
-                else if (value == 6) painter->setBrush(QBrush(QColor(0, 255, 0, 127)));
-                else if (value == 7) painter->setBrush(QBrush(QColor(0, 0, 255, 127)));
-                else if (value == 8) painter->setBrush(QBrush(QColor(127, 127, 127, 127)));
-                else if (value == 9) painter->setBrush(QBrush(QColor(127, 127, 0, 127)));
+                else if (value == 2) painter->setBrush(QBrush(QColor(255, 255, 0, 127)));
+                else if (value == 3) painter->setBrush(QBrush(QColor(0, 255, 255, 127)));
+                else if (value == 4) painter->setBrush(QBrush(QColor(0, 0, 255, 127)));
+                else if (value == 5) painter->setBrush(QBrush(QColor(255, 0, 255, 127)));
+                else if (value == 6) painter->setBrush(QBrush(QColor(255, 0, 0, 127)));
+                else if (value == 7) painter->setBrush(QBrush(QColor(255, 255, 0, 127)));
+                else if (value == 8) painter->setBrush(QBrush(QColor(0, 255, 0, 127)));
+                else if (value == 9) painter->setBrush(QBrush(QColor(0, 255, 255, 127)));
+                else if (value == 10) painter->setBrush(QBrush(QColor(0, 0, 255, 127)));
+                else if (value == 11) painter->setBrush(QBrush(QColor(255, 0, 255, 127)));
+                else if (value == 12) painter->setBrush(QBrush(QColor(255, 0, 0, 127)));
+                else if (value == 13) painter->setBrush(QBrush(QColor(255, 255, 0, 127)));
+                else if (value == 14) painter->setBrush(QBrush(QColor(0, 255, 255, 127)));
                 else if (value == 0) painter->setBrush(QBrush(Qt::white));
                 painter->drawRect(size*x, size*y*-1, size, size);
             }

@@ -37,19 +37,19 @@ void Controller::run()
 
 void Controller::update()
 {
-    this->mappingDeadReck();
+    this->updateBotOnGrid();
     this->showView();
 }
 
-void Controller::mappingDeadReck()
+void Controller::updateBotOnGrid()
 {
-    double limitx = (grid->getWidth()/2),
-           limity = (grid->getHeight()/2),
-           beginx = limitx*-1,
-           beginy = limity*-1;
     double botx = round(bot->getX()/grid->getCellScale()),
            boty = round(bot->getY()/grid->getCellScale()),
            botth = bot->getTh()*-1;
+    double limitx = (botx+125 > (grid->getWidth()/2) ? (grid->getWidth()/2)-botx : botx+125),
+           limity = (botx+125 > (grid->getHeight()/2) ? (grid->getHeight()/2)-botx : botx+125),
+           beginx = (limitx)*-1,
+           beginy = (limity)*-1;
 
     for (double x = beginx; x < limitx; x++) {
         for (double y = beginy; y < limity; y++) {
@@ -57,30 +57,40 @@ void Controller::mappingDeadReck()
             double angle = round(atan2((limity - y) - (limity - boty), (x - limitx) - (botx - limitx))*180/M_PI);
 
             if (x == botx && y == boty) {
-                grid->assign(x, y, 1, -1);
+                grid->assign(x, y, 1);
             } else if (distance <= 25) {
                 //std::cout << "bot->getTh()" << bot->getTh() << std::endl;
-                if (grid->isAngleAtRange(x, y, 2, botth+90, angle, 15)) {
-                    //grid->assign(x, y, 2, 0);
-                } else if (grid->isAngleAtRange(x, y, 3, botth+50, angle, 15)) {
-                    //grid->assign(x, y, 3, 1);
-                } else if (grid->isAngleAtRange(x, y, 4, botth+30, angle, 15)) {
-                    //grid->assign(x, y, 4, 2);
-                } else if (grid->isAngleAtRange(x, y, 5, botth+10, angle, 15)) {
-                    //grid->assign(x, y, 5, 3);
-                } else if (grid->isAngleAtRange(x, y, 6, botth-10, angle, 15)) {
-                    //grid->assign(x, y, 6, 4);
-                } else if (grid->isAngleAtRange(x, y, 7, botth-30, angle, 15)) {
-                    //grid->assign(x, y, 7, 5);
-                } else if (grid->isAngleAtRange(x, y, 8, botth-50, angle, 15)) {
-                    //grid->assign(x, y, 8, 6);
-                } else if (grid->isAngleAtRange(x, y, 9, botth-90, angle, 15)) {
-                    //grid->assign(x, y, 9, 7);
+                if (grid->isAngleAtRange(botth+90, angle, 15)) {
+                    grid->assign(x, y, 2);
+                } else if (grid->isAngleAtRange(botth+50, angle, 15) && !grid->isAngleAtRange(botth+30, angle, 10)) {
+                    grid->assign(x, y, 3);
+                } else if (grid->isAngleAtRange(botth+40, angle, 0.5)) {
+                    grid->assign(x, y, 4);
+                } else if (grid->isAngleAtRange(botth+30, angle, 15) && !grid->isAngleAtRange(botth+10, angle, 10)) {
+                    grid->assign(x, y, 5);
+                } else if (grid->isAngleAtRange(botth+20, angle, 0.5)) {
+                    grid->assign(x, y, 6);
+                } else if (grid->isAngleAtRange(botth+10, angle, 15) && !grid->isAngleAtRange(botth-10, angle, 10)) {
+                    grid->assign(x, y, 7);
+                } else if (grid->isAngleAtRange(botth, angle, 0.5)) {
+                    grid->assign(x, y, 8);
+                } else if (grid->isAngleAtRange(botth-10, angle, 15) && !grid->isAngleAtRange(botth-30, angle, 10)) {
+                    grid->assign(x, y, 9);
+                } else if (grid->isAngleAtRange(botth-20, angle, 0.5)) {
+                    grid->assign(x, y, 10);
+                } else if (grid->isAngleAtRange(botth-30, angle, 15) && !grid->isAngleAtRange(botth-50, angle, 10)) {
+                    grid->assign(x, y, 11);
+                } else if (grid->isAngleAtRange(botth-40, angle, 0.5)) {
+                    grid->assign(x, y, 12);
+                } else if (grid->isAngleAtRange(botth-50, angle, 15)) {
+                    grid->assign(x, y, 13);
+                } else if (grid->isAngleAtRange(botth-90, angle, 15)) {
+                    grid->assign(x, y, 14);
                 } else {
-                    grid->assign(x, y, 0, -1);
+                    grid->assign(x, y, 0);
                 }
             } else {
-                grid->assign(x, y, 0, -1);
+                grid->assign(x, y, 0);
             }
         }
     }
