@@ -9,7 +9,7 @@ int main(int argc, char *argv[])
 
     Controller controller(500, 500, 5, 100);
     controller.setBot(new Bot(&argc, argv));
-    controller.runBot();
+    controller.run();
 
     return a.exec();
 }

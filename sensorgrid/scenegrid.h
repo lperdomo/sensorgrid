@@ -7,25 +7,25 @@
 #include <QKeyEvent>
 
 #include "occupancygrid.h"
-#include "graphicgrid.h"
+
+class SceneGridItem : public QGraphicsItem
+{
+public:
+    SceneGridItem(OccupancyGrid *grid);
+    ~SceneGridItem();
+    QRectF boundingRect() const;
+    OccupancyGrid *grid;
+protected:
+    void paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget = 0);
+};
 
 class SceneGrid : public QGraphicsScene
 {
 public:
-    SceneGrid(qreal x, qreal y, qreal width, qreal height, double cellSize, double cellScale, OccupancyGrid *grid);
+    SceneGrid(qreal x, qreal y, qreal width, qreal height, OccupancyGrid *grid);
     ~SceneGrid();
-    void drawGrid();
-    void drawBotRect(qreal x, qreal y);
-    void drawTrailRect(qreal x, qreal y);
-    double getCellSize();
-    double getCellScale();
 private:
-    double cellSize;
-    double cellScale;
-    GraphicGrid *graphicgrid;
-    std::vector<std::vector<QGraphicsRectItem*> > squares;
-    OccupancyGrid *grid;
-    QGraphicsRectItem *rectBot;
+    SceneGridItem *gridItem;
 protected:
     void drawForeground(QPainter *painter, const QRectF &rect);
     void keyPressEvent(QKeyEvent *event);

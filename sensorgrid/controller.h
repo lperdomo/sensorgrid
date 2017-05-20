@@ -15,20 +15,19 @@ public:
     explicit Controller(double width, double height, double cellSide, double cellSize);
     ~Controller();
     void setBot(Bot *bot);
-    void runBot();
+    void run();
 private:
     Bot *bot;
     SceneGrid *scene;
     QGraphicsView *view;
     OccupancyGrid *grid;
     QThread *thread;
-    void updateBotCell();
-    void drawBotView();
+    void showView();
     void mappingDeadReck();
 signals:
 
 public slots:
-    void updateGrid();
+    void update();
 };
 
 #endif // CONTROLLER_H

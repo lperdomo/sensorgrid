@@ -54,11 +54,9 @@ SOURCES       = ../sensorgrid/main.cpp \
 		../sensorgrid/occupancygrid.cpp \
 		../sensorgrid/keyboard.cpp \
 		../sensorgrid/controller.cpp \
-		../sensorgrid/bot.cpp \
-		../sensorgrid/graphicgrid.cpp moc_occupancygrid.cpp \
+		../sensorgrid/bot.cpp moc_occupancygrid.cpp \
 		moc_controller.cpp \
-		moc_bot.cpp \
-		moc_graphicgrid.cpp
+		moc_bot.cpp
 OBJECTS       = main.o \
 		scenegrid.o \
 		pid.o \
@@ -66,11 +64,9 @@ OBJECTS       = main.o \
 		keyboard.o \
 		controller.o \
 		bot.o \
-		graphicgrid.o \
 		moc_occupancygrid.o \
 		moc_controller.o \
-		moc_bot.o \
-		moc_graphicgrid.o
+		moc_bot.o
 DIST          = /opt/Qt/5.8/gcc_64/mkspecs/features/spec_pre.prf \
 		/opt/Qt/5.8/gcc_64/mkspecs/common/unix.conf \
 		/opt/Qt/5.8/gcc_64/mkspecs/common/linux.conf \
@@ -246,15 +242,13 @@ DIST          = /opt/Qt/5.8/gcc_64/mkspecs/features/spec_pre.prf \
 		../sensorgrid/occupancygrid.h \
 		../sensorgrid/keyboard.h \
 		../sensorgrid/controller.h \
-		../sensorgrid/bot.h \
-		../sensorgrid/graphicgrid.h ../sensorgrid/main.cpp \
+		../sensorgrid/bot.h ../sensorgrid/main.cpp \
 		../sensorgrid/scenegrid.cpp \
 		../sensorgrid/pid.cpp \
 		../sensorgrid/occupancygrid.cpp \
 		../sensorgrid/keyboard.cpp \
 		../sensorgrid/controller.cpp \
-		../sensorgrid/bot.cpp \
-		../sensorgrid/graphicgrid.cpp
+		../sensorgrid/bot.cpp
 QMAKE_TARGET  = sensorgrid
 DESTDIR       = 
 TARGET        = sensorgrid
@@ -630,8 +624,8 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /opt/Qt/5.8/gcc_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../sensorgrid/scenegrid.h ../sensorgrid/pid.h ../sensorgrid/occupancygrid.h ../sensorgrid/keyboard.h ../sensorgrid/controller.h ../sensorgrid/bot.h ../sensorgrid/graphicgrid.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../sensorgrid/main.cpp ../sensorgrid/scenegrid.cpp ../sensorgrid/pid.cpp ../sensorgrid/occupancygrid.cpp ../sensorgrid/keyboard.cpp ../sensorgrid/controller.cpp ../sensorgrid/bot.cpp ../sensorgrid/graphicgrid.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../sensorgrid/scenegrid.h ../sensorgrid/pid.h ../sensorgrid/occupancygrid.h ../sensorgrid/keyboard.h ../sensorgrid/controller.h ../sensorgrid/bot.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../sensorgrid/main.cpp ../sensorgrid/scenegrid.cpp ../sensorgrid/pid.cpp ../sensorgrid/occupancygrid.cpp ../sensorgrid/keyboard.cpp ../sensorgrid/controller.cpp ../sensorgrid/bot.cpp $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -663,9 +657,9 @@ compiler_moc_predefs_clean:
 moc_predefs.h: /opt/Qt/5.8/gcc_64/mkspecs/features/data/dummy.cpp
 	g++ -pipe -g -std=gnu++11 -Wall -W -dM -E -o moc_predefs.h /opt/Qt/5.8/gcc_64/mkspecs/features/data/dummy.cpp
 
-compiler_moc_header_make_all: moc_occupancygrid.cpp moc_controller.cpp moc_bot.cpp moc_graphicgrid.cpp
+compiler_moc_header_make_all: moc_occupancygrid.cpp moc_controller.cpp moc_bot.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_occupancygrid.cpp moc_controller.cpp moc_bot.cpp moc_graphicgrid.cpp
+	-$(DEL_FILE) moc_occupancygrid.cpp moc_controller.cpp moc_bot.cpp
 moc_occupancygrid.cpp: /opt/Qt/5.8/gcc_64/include/QtCore/QObject \
 		/opt/Qt/5.8/gcc_64/include/QtCore/qobject.h \
 		/opt/Qt/5.8/gcc_64/include/QtCore/qobjectdefs.h \
@@ -1208,96 +1202,6 @@ moc_bot.cpp: /opt/Qt/5.8/gcc_64/include/QtCore/QObject \
 		moc_predefs.h \
 		/opt/Qt/5.8/gcc_64/bin/moc
 	/opt/Qt/5.8/gcc_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/opt/Qt/5.8/gcc_64/mkspecs/linux-g++ -I/media/leo/7CA5D4323C92D667/workspace/sensorgrid/sensorgrid -I/usr/local/Aria/include -I/usr/local/Aria/ArNetworking/include -I/opt/Qt/5.8/gcc_64/include -I/opt/Qt/5.8/gcc_64/include/QtWidgets -I/opt/Qt/5.8/gcc_64/include/QtGui -I/opt/Qt/5.8/gcc_64/include/QtCore -I. -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../sensorgrid/bot.h -o moc_bot.cpp
-
-moc_graphicgrid.cpp: /opt/Qt/5.8/gcc_64/include/QtGui/QPainter \
-		/opt/Qt/5.8/gcc_64/include/QtGui/qpainter.h \
-		/opt/Qt/5.8/gcc_64/include/QtGui/qtguiglobal.h \
-		/opt/Qt/5.8/gcc_64/include/QtCore/qglobal.h \
-		/opt/Qt/5.8/gcc_64/include/QtCore/qconfig-bootstrapped.h \
-		/opt/Qt/5.8/gcc_64/include/QtCore/qconfig.h \
-		/opt/Qt/5.8/gcc_64/include/QtCore/qtcore-config.h \
-		/opt/Qt/5.8/gcc_64/include/QtCore/qsystemdetection.h \
-		/opt/Qt/5.8/gcc_64/include/QtCore/qprocessordetection.h \
-		/opt/Qt/5.8/gcc_64/include/QtCore/qcompilerdetection.h \
-		/opt/Qt/5.8/gcc_64/include/QtCore/qtypeinfo.h \
-		/opt/Qt/5.8/gcc_64/include/QtCore/qsysinfo.h \
-		/opt/Qt/5.8/gcc_64/include/QtCore/qlogging.h \
-		/opt/Qt/5.8/gcc_64/include/QtCore/qflags.h \
-		/opt/Qt/5.8/gcc_64/include/QtCore/qtypetraits.h \
-		/opt/Qt/5.8/gcc_64/include/QtCore/qatomic.h \
-		/opt/Qt/5.8/gcc_64/include/QtCore/qbasicatomic.h \
-		/opt/Qt/5.8/gcc_64/include/QtCore/qatomic_bootstrap.h \
-		/opt/Qt/5.8/gcc_64/include/QtCore/qgenericatomic.h \
-		/opt/Qt/5.8/gcc_64/include/QtCore/qatomic_cxx11.h \
-		/opt/Qt/5.8/gcc_64/include/QtCore/qatomic_msvc.h \
-		/opt/Qt/5.8/gcc_64/include/QtCore/qglobalstatic.h \
-		/opt/Qt/5.8/gcc_64/include/QtCore/qmutex.h \
-		/opt/Qt/5.8/gcc_64/include/QtCore/qnumeric.h \
-		/opt/Qt/5.8/gcc_64/include/QtCore/qversiontagging.h \
-		/opt/Qt/5.8/gcc_64/include/QtGui/qtgui-config.h \
-		/opt/Qt/5.8/gcc_64/include/QtCore/qnamespace.h \
-		/opt/Qt/5.8/gcc_64/include/QtCore/qrect.h \
-		/opt/Qt/5.8/gcc_64/include/QtCore/qmargins.h \
-		/opt/Qt/5.8/gcc_64/include/QtCore/qsize.h \
-		/opt/Qt/5.8/gcc_64/include/QtCore/qpoint.h \
-		/opt/Qt/5.8/gcc_64/include/QtCore/qscopedpointer.h \
-		/opt/Qt/5.8/gcc_64/include/QtGui/qpixmap.h \
-		/opt/Qt/5.8/gcc_64/include/QtGui/qpaintdevice.h \
-		/opt/Qt/5.8/gcc_64/include/QtGui/qwindowdefs.h \
-		/opt/Qt/5.8/gcc_64/include/QtCore/qobjectdefs.h \
-		/opt/Qt/5.8/gcc_64/include/QtCore/qobjectdefs_impl.h \
-		/opt/Qt/5.8/gcc_64/include/QtGui/qwindowdefs_win.h \
-		/opt/Qt/5.8/gcc_64/include/QtGui/qcolor.h \
-		/opt/Qt/5.8/gcc_64/include/QtGui/qrgb.h \
-		/opt/Qt/5.8/gcc_64/include/QtCore/qstringlist.h \
-		/opt/Qt/5.8/gcc_64/include/QtCore/qlist.h \
-		/opt/Qt/5.8/gcc_64/include/QtCore/qalgorithms.h \
-		/opt/Qt/5.8/gcc_64/include/QtCore/qiterator.h \
-		/opt/Qt/5.8/gcc_64/include/QtCore/qrefcount.h \
-		/opt/Qt/5.8/gcc_64/include/QtCore/qarraydata.h \
-		/opt/Qt/5.8/gcc_64/include/QtCore/qhashfunctions.h \
-		/opt/Qt/5.8/gcc_64/include/QtCore/qchar.h \
-		/opt/Qt/5.8/gcc_64/include/QtCore/qpair.h \
-		/opt/Qt/5.8/gcc_64/include/QtCore/qbytearraylist.h \
-		/opt/Qt/5.8/gcc_64/include/QtCore/qbytearray.h \
-		/opt/Qt/5.8/gcc_64/include/QtCore/qstring.h \
-		/opt/Qt/5.8/gcc_64/include/QtCore/qstringbuilder.h \
-		/opt/Qt/5.8/gcc_64/include/QtCore/qregexp.h \
-		/opt/Qt/5.8/gcc_64/include/QtCore/qstringmatcher.h \
-		/opt/Qt/5.8/gcc_64/include/QtGui/qrgba64.h \
-		/opt/Qt/5.8/gcc_64/include/QtCore/qsharedpointer.h \
-		/opt/Qt/5.8/gcc_64/include/QtCore/qshareddata.h \
-		/opt/Qt/5.8/gcc_64/include/QtCore/qhash.h \
-		/opt/Qt/5.8/gcc_64/include/QtCore/qsharedpointer_impl.h \
-		/opt/Qt/5.8/gcc_64/include/QtCore/qobject.h \
-		/opt/Qt/5.8/gcc_64/include/QtCore/qcoreevent.h \
-		/opt/Qt/5.8/gcc_64/include/QtCore/qmetatype.h \
-		/opt/Qt/5.8/gcc_64/include/QtCore/qvarlengtharray.h \
-		/opt/Qt/5.8/gcc_64/include/QtCore/qcontainerfwd.h \
-		/opt/Qt/5.8/gcc_64/include/QtCore/qobject_impl.h \
-		/opt/Qt/5.8/gcc_64/include/QtGui/qimage.h \
-		/opt/Qt/5.8/gcc_64/include/QtGui/qpixelformat.h \
-		/opt/Qt/5.8/gcc_64/include/QtGui/qtransform.h \
-		/opt/Qt/5.8/gcc_64/include/QtGui/qmatrix.h \
-		/opt/Qt/5.8/gcc_64/include/QtGui/qpolygon.h \
-		/opt/Qt/5.8/gcc_64/include/QtCore/qvector.h \
-		/opt/Qt/5.8/gcc_64/include/QtGui/qregion.h \
-		/opt/Qt/5.8/gcc_64/include/QtCore/qdatastream.h \
-		/opt/Qt/5.8/gcc_64/include/QtCore/qiodevice.h \
-		/opt/Qt/5.8/gcc_64/include/QtCore/qline.h \
-		/opt/Qt/5.8/gcc_64/include/QtGui/qpainterpath.h \
-		/opt/Qt/5.8/gcc_64/include/QtGui/qtextoption.h \
-		/opt/Qt/5.8/gcc_64/include/QtGui/qpen.h \
-		/opt/Qt/5.8/gcc_64/include/QtGui/qbrush.h \
-		/opt/Qt/5.8/gcc_64/include/QtGui/qfontinfo.h \
-		/opt/Qt/5.8/gcc_64/include/QtGui/qfont.h \
-		/opt/Qt/5.8/gcc_64/include/QtGui/qfontmetrics.h \
-		../sensorgrid/occupancygrid.h \
-		/opt/Qt/5.8/gcc_64/include/QtCore/QObject \
-		../sensorgrid/graphicgrid.h \
-		moc_predefs.h \
-		/opt/Qt/5.8/gcc_64/bin/moc
-	/opt/Qt/5.8/gcc_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/opt/Qt/5.8/gcc_64/mkspecs/linux-g++ -I/media/leo/7CA5D4323C92D667/workspace/sensorgrid/sensorgrid -I/usr/local/Aria/include -I/usr/local/Aria/ArNetworking/include -I/opt/Qt/5.8/gcc_64/include -I/opt/Qt/5.8/gcc_64/include/QtWidgets -I/opt/Qt/5.8/gcc_64/include/QtGui -I/opt/Qt/5.8/gcc_64/include/QtCore -I. -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../sensorgrid/graphicgrid.h -o moc_graphicgrid.cpp
 
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
@@ -2255,94 +2159,6 @@ bot.o: ../sensorgrid/bot.cpp ../sensorgrid/bot.h \
 		../sensorgrid/pid.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o bot.o ../sensorgrid/bot.cpp
 
-graphicgrid.o: ../sensorgrid/graphicgrid.cpp ../sensorgrid/graphicgrid.h \
-		/opt/Qt/5.8/gcc_64/include/QtGui/QPainter \
-		/opt/Qt/5.8/gcc_64/include/QtGui/qpainter.h \
-		/opt/Qt/5.8/gcc_64/include/QtGui/qtguiglobal.h \
-		/opt/Qt/5.8/gcc_64/include/QtCore/qglobal.h \
-		/opt/Qt/5.8/gcc_64/include/QtCore/qconfig-bootstrapped.h \
-		/opt/Qt/5.8/gcc_64/include/QtCore/qconfig.h \
-		/opt/Qt/5.8/gcc_64/include/QtCore/qtcore-config.h \
-		/opt/Qt/5.8/gcc_64/include/QtCore/qsystemdetection.h \
-		/opt/Qt/5.8/gcc_64/include/QtCore/qprocessordetection.h \
-		/opt/Qt/5.8/gcc_64/include/QtCore/qcompilerdetection.h \
-		/opt/Qt/5.8/gcc_64/include/QtCore/qtypeinfo.h \
-		/opt/Qt/5.8/gcc_64/include/QtCore/qsysinfo.h \
-		/opt/Qt/5.8/gcc_64/include/QtCore/qlogging.h \
-		/opt/Qt/5.8/gcc_64/include/QtCore/qflags.h \
-		/opt/Qt/5.8/gcc_64/include/QtCore/qtypetraits.h \
-		/opt/Qt/5.8/gcc_64/include/QtCore/qatomic.h \
-		/opt/Qt/5.8/gcc_64/include/QtCore/qbasicatomic.h \
-		/opt/Qt/5.8/gcc_64/include/QtCore/qatomic_bootstrap.h \
-		/opt/Qt/5.8/gcc_64/include/QtCore/qgenericatomic.h \
-		/opt/Qt/5.8/gcc_64/include/QtCore/qatomic_cxx11.h \
-		/opt/Qt/5.8/gcc_64/include/QtCore/qatomic_msvc.h \
-		/opt/Qt/5.8/gcc_64/include/QtCore/qglobalstatic.h \
-		/opt/Qt/5.8/gcc_64/include/QtCore/qmutex.h \
-		/opt/Qt/5.8/gcc_64/include/QtCore/qnumeric.h \
-		/opt/Qt/5.8/gcc_64/include/QtCore/qversiontagging.h \
-		/opt/Qt/5.8/gcc_64/include/QtGui/qtgui-config.h \
-		/opt/Qt/5.8/gcc_64/include/QtCore/qnamespace.h \
-		/opt/Qt/5.8/gcc_64/include/QtCore/qrect.h \
-		/opt/Qt/5.8/gcc_64/include/QtCore/qmargins.h \
-		/opt/Qt/5.8/gcc_64/include/QtCore/qsize.h \
-		/opt/Qt/5.8/gcc_64/include/QtCore/qpoint.h \
-		/opt/Qt/5.8/gcc_64/include/QtCore/qscopedpointer.h \
-		/opt/Qt/5.8/gcc_64/include/QtGui/qpixmap.h \
-		/opt/Qt/5.8/gcc_64/include/QtGui/qpaintdevice.h \
-		/opt/Qt/5.8/gcc_64/include/QtGui/qwindowdefs.h \
-		/opt/Qt/5.8/gcc_64/include/QtCore/qobjectdefs.h \
-		/opt/Qt/5.8/gcc_64/include/QtCore/qobjectdefs_impl.h \
-		/opt/Qt/5.8/gcc_64/include/QtGui/qwindowdefs_win.h \
-		/opt/Qt/5.8/gcc_64/include/QtGui/qcolor.h \
-		/opt/Qt/5.8/gcc_64/include/QtGui/qrgb.h \
-		/opt/Qt/5.8/gcc_64/include/QtCore/qstringlist.h \
-		/opt/Qt/5.8/gcc_64/include/QtCore/qlist.h \
-		/opt/Qt/5.8/gcc_64/include/QtCore/qalgorithms.h \
-		/opt/Qt/5.8/gcc_64/include/QtCore/qiterator.h \
-		/opt/Qt/5.8/gcc_64/include/QtCore/qrefcount.h \
-		/opt/Qt/5.8/gcc_64/include/QtCore/qarraydata.h \
-		/opt/Qt/5.8/gcc_64/include/QtCore/qhashfunctions.h \
-		/opt/Qt/5.8/gcc_64/include/QtCore/qchar.h \
-		/opt/Qt/5.8/gcc_64/include/QtCore/qpair.h \
-		/opt/Qt/5.8/gcc_64/include/QtCore/qbytearraylist.h \
-		/opt/Qt/5.8/gcc_64/include/QtCore/qbytearray.h \
-		/opt/Qt/5.8/gcc_64/include/QtCore/qstring.h \
-		/opt/Qt/5.8/gcc_64/include/QtCore/qstringbuilder.h \
-		/opt/Qt/5.8/gcc_64/include/QtCore/qregexp.h \
-		/opt/Qt/5.8/gcc_64/include/QtCore/qstringmatcher.h \
-		/opt/Qt/5.8/gcc_64/include/QtGui/qrgba64.h \
-		/opt/Qt/5.8/gcc_64/include/QtCore/qsharedpointer.h \
-		/opt/Qt/5.8/gcc_64/include/QtCore/qshareddata.h \
-		/opt/Qt/5.8/gcc_64/include/QtCore/qhash.h \
-		/opt/Qt/5.8/gcc_64/include/QtCore/qsharedpointer_impl.h \
-		/opt/Qt/5.8/gcc_64/include/QtCore/qobject.h \
-		/opt/Qt/5.8/gcc_64/include/QtCore/qcoreevent.h \
-		/opt/Qt/5.8/gcc_64/include/QtCore/qmetatype.h \
-		/opt/Qt/5.8/gcc_64/include/QtCore/qvarlengtharray.h \
-		/opt/Qt/5.8/gcc_64/include/QtCore/qcontainerfwd.h \
-		/opt/Qt/5.8/gcc_64/include/QtCore/qobject_impl.h \
-		/opt/Qt/5.8/gcc_64/include/QtGui/qimage.h \
-		/opt/Qt/5.8/gcc_64/include/QtGui/qpixelformat.h \
-		/opt/Qt/5.8/gcc_64/include/QtGui/qtransform.h \
-		/opt/Qt/5.8/gcc_64/include/QtGui/qmatrix.h \
-		/opt/Qt/5.8/gcc_64/include/QtGui/qpolygon.h \
-		/opt/Qt/5.8/gcc_64/include/QtCore/qvector.h \
-		/opt/Qt/5.8/gcc_64/include/QtGui/qregion.h \
-		/opt/Qt/5.8/gcc_64/include/QtCore/qdatastream.h \
-		/opt/Qt/5.8/gcc_64/include/QtCore/qiodevice.h \
-		/opt/Qt/5.8/gcc_64/include/QtCore/qline.h \
-		/opt/Qt/5.8/gcc_64/include/QtGui/qpainterpath.h \
-		/opt/Qt/5.8/gcc_64/include/QtGui/qtextoption.h \
-		/opt/Qt/5.8/gcc_64/include/QtGui/qpen.h \
-		/opt/Qt/5.8/gcc_64/include/QtGui/qbrush.h \
-		/opt/Qt/5.8/gcc_64/include/QtGui/qfontinfo.h \
-		/opt/Qt/5.8/gcc_64/include/QtGui/qfont.h \
-		/opt/Qt/5.8/gcc_64/include/QtGui/qfontmetrics.h \
-		../sensorgrid/occupancygrid.h \
-		/opt/Qt/5.8/gcc_64/include/QtCore/QObject
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o graphicgrid.o ../sensorgrid/graphicgrid.cpp
-
 moc_occupancygrid.o: moc_occupancygrid.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_occupancygrid.o moc_occupancygrid.cpp
 
@@ -2351,9 +2167,6 @@ moc_controller.o: moc_controller.cpp
 
 moc_bot.o: moc_bot.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_bot.o moc_bot.cpp
-
-moc_graphicgrid.o: moc_graphicgrid.cpp 
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_graphicgrid.o moc_graphicgrid.cpp
 
 ####### Install
 

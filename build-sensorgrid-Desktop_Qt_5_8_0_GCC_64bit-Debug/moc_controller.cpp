@@ -22,7 +22,7 @@ QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_Controller_t {
     QByteArrayData data[3];
-    char stringdata0[23];
+    char stringdata0[19];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -32,11 +32,11 @@ struct qt_meta_stringdata_Controller_t {
 static const qt_meta_stringdata_Controller_t qt_meta_stringdata_Controller = {
     {
 QT_MOC_LITERAL(0, 0, 10), // "Controller"
-QT_MOC_LITERAL(1, 11, 10), // "updateGrid"
-QT_MOC_LITERAL(2, 22, 0) // ""
+QT_MOC_LITERAL(1, 11, 6), // "update"
+QT_MOC_LITERAL(2, 18, 0) // ""
 
     },
-    "Controller\0updateGrid\0"
+    "Controller\0update\0"
 };
 #undef QT_MOC_LITERAL
 
@@ -68,7 +68,7 @@ void Controller::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         Controller *_t = static_cast<Controller *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
-        case 0: _t->updateGrid(); break;
+        case 0: _t->update(); break;
         default: ;
         }
     }
